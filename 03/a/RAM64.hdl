@@ -49,7 +49,7 @@ CHIP RAM64 {
     DMux8Way(in=in[15], sel=address[3..5], a=a15, b=b15, c=c15, d=d15,
         e=e15, f=f15, g=g15, h=h15);
 
-    // find which register to load
+    // find which RAM8 to load
     DMux8Way(in=true, sel=address[3..5], a=a0load, b=b0load,
         c=c0load, d=d0load, e=e0load, f=f0load, g=g0load, h=h0load);
 
