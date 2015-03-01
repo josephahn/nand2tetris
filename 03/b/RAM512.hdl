@@ -15,5 +15,85 @@ CHIP RAM512 {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+
+    DMux8Way(in=in[0], sel=address[6..8], a=a0, b=b0, c=c0, d=d0,
+        e=e0, f=f0, g=g0, h=h0);
+    DMux8Way(in=in[1], sel=address[6..8], a=a1, b=b1, c=c1, d=d1,
+        e=e1, f=f1, g=g1, h=h1);
+    DMux8Way(in=in[2], sel=address[6..8], a=a2, b=b2, c=c2, d=d2,
+        e=e2, f=f2, g=g2, h=h2);
+    DMux8Way(in=in[3], sel=address[6..8], a=a3, b=b3, c=c3, d=d3,
+        e=e3, f=f3, g=g3, h=h3);
+    DMux8Way(in=in[4], sel=address[6..8], a=a4, b=b4, c=c4, d=d4,
+        e=e4, f=f4, g=g4, h=h4);
+    DMux8Way(in=in[5], sel=address[6..8], a=a5, b=b5, c=c5, d=d5,
+        e=e5, f=f5, g=g5, h=h5);
+    DMux8Way(in=in[6], sel=address[6..8], a=a6, b=b6, c=c6, d=d6,
+        e=e6, f=f6, g=g6, h=h6);
+    DMux8Way(in=in[7], sel=address[6..8], a=a7, b=b7, c=c7, d=d7,
+        e=e7, f=f7, g=g7, h=h7);
+    DMux8Way(in=in[8], sel=address[6..8], a=a8, b=b8, c=c8, d=d8,
+        e=e8, f=f8, g=g8, h=h8);
+    DMux8Way(in=in[9], sel=address[6..8], a=a9, b=b9, c=c9, d=d9,
+        e=e9, f=f9, g=g9, h=h9);
+    DMux8Way(in=in[10], sel=address[6..8], a=a10, b=b10, c=c10, d=d10,
+        e=e10, f=f10, g=g10, h=h10);
+    DMux8Way(in=in[11], sel=address[6..8], a=a11, b=b11, c=c11, d=d11,
+        e=e11, f=f11, g=g11, h=h11);
+    DMux8Way(in=in[12], sel=address[6..8], a=a12, b=b12, c=c12, d=d12,
+        e=e12, f=f12, g=g12, h=h12);
+    DMux8Way(in=in[13], sel=address[6..8], a=a13, b=b13, c=c13, d=d13,
+        e=e13, f=f13, g=g13, h=h13);
+    DMux8Way(in=in[14], sel=address[6..8], a=a14, b=b14, c=c14, d=d14,
+        e=e14, f=f14, g=g14, h=h14);
+    DMux8Way(in=in[15], sel=address[6..8], a=a15, b=b15, c=c15, d=d15,
+        e=e15, f=f15, g=g15, h=h15);
+
+    DMux8Way(in=true, sel=address[6..8], a=a0load, b=b0load,
+        c=c0load, d=d0load, e=e0load, f=f0load, g=g0load, h=h0load);
+
+    And(a=load, b=a0load, out=a1load);
+    And(a=load, b=b0load, out=b1load);
+    And(a=load, b=c0load, out=c1load);
+    And(a=load, b=d0load, out=d1load);
+    And(a=load, b=e0load, out=e1load);
+    And(a=load, b=f0load, out=f1load);
+    And(a=load, b=g0load, out=g1load);
+    And(a=load, b=h0load, out=h1load);
+
+    RAM64(in[0]=a0, in[1]=a1, in[2]=a2, in[3]=a3, in[4]=a4,
+        in[5]=a5, in[6]=a6, in[7]=a7, in[8]=a8, in[9]=a9,
+        in[10]=a10, in[11]=a11, in[12]=a12, in[13]=a13, in[14]=a14,
+        in[15]=a15, load=a1load, address=address[0..5], out=a);
+    RAM64(in[0]=b0, in[1]=b1, in[2]=b2, in[3]=b3, in[4]=b4,
+        in[5]=b5, in[6]=b6, in[7]=b7, in[8]=b8, in[9]=b9,
+        in[10]=b10, in[11]=b11, in[12]=b12, in[13]=b13, in[14]=b14,
+        in[15]=b15, load=b1load, address=address[0..5], out=b);
+    RAM64(in[0]=c0, in[1]=c1, in[2]=c2, in[3]=c3, in[4]=c4,
+        in[5]=c5, in[6]=c6, in[7]=c7, in[8]=c8, in[9]=c9,
+        in[10]=c10, in[11]=c11, in[12]=c12, in[13]=c13, in[14]=c14,
+        in[15]=c15, load=c1load, address=address[0..5], out=c);
+    RAM64(in[0]=d0, in[1]=d1, in[2]=d2, in[3]=d3, in[4]=d4,
+        in[5]=d5, in[6]=d6, in[7]=d7, in[8]=d8, in[9]=d9,
+        in[10]=d10, in[11]=d11, in[12]=d12, in[13]=d13, in[14]=d14,
+        in[15]=d15, load=d1load, address=address[0..5], out=d);
+    RAM64(in[0]=e0, in[1]=e1, in[2]=e2, in[3]=e3, in[4]=e4,
+        in[5]=e5, in[6]=e6, in[7]=e7, in[8]=e8, in[9]=e9,
+        in[10]=e10, in[11]=e11, in[12]=e12, in[13]=e13, in[14]=e14,
+        in[15]=e15, load=e1load, address=address[0..5], out=e);
+    RAM64(in[0]=f0, in[1]=f1, in[2]=f2, in[3]=f3, in[4]=f4,
+        in[5]=f5, in[6]=f6, in[7]=f7, in[8]=f8, in[9]=f9,
+        in[10]=f10, in[11]=f11, in[12]=f12, in[13]=f13, in[14]=f14,
+        in[15]=f15, load=f1load, address=address[0..5], out=f);
+    RAM64(in[0]=g0, in[1]=g1, in[2]=g2, in[3]=g3, in[4]=g4,
+        in[5]=g5, in[6]=g6, in[7]=g7, in[8]=g8, in[9]=g9,
+        in[10]=g10, in[11]=g11, in[12]=g12, in[13]=g13, in[14]=g14,
+        in[15]=g15, load=g1load, address=address[0..5], out=g);
+    RAM64(in[0]=h0, in[1]=h1, in[2]=h2, in[3]=h3, in[4]=h4,
+        in[5]=h5, in[6]=h6, in[7]=h7, in[8]=h8, in[9]=h9,
+        in[10]=h10, in[11]=h11, in[12]=h12, in[13]=h13, in[14]=h14,
+        in[15]=h15, load=h1load, address=address[0..5], out=h);
+
+    Mux8Way16(a=a, b=b, c=c, d=d, e=e, f=f, g=g, h=h, sel=address[6..8],
+        out=out);
 }
