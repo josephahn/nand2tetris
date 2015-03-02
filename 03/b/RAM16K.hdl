@@ -15,5 +15,49 @@ CHIP RAM16K {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+
+    DMux4Way(in=in[0], sel=address[12..13], a=a0, b=b0, c=c0, d=d0);
+    DMux4Way(in=in[1], sel=address[12..13], a=a1, b=b1, c=c1, d=d1);
+    DMux4Way(in=in[2], sel=address[12..13], a=a2, b=b2, c=c2, d=d2);
+    DMux4Way(in=in[3], sel=address[12..13], a=a3, b=b3, c=c3, d=d3);
+    DMux4Way(in=in[4], sel=address[12..13], a=a4, b=b4, c=c4, d=d4);
+    DMux4Way(in=in[5], sel=address[12..13], a=a5, b=b5, c=c5, d=d5);
+    DMux4Way(in=in[6], sel=address[12..13], a=a6, b=b6, c=c6, d=d6);
+    DMux4Way(in=in[7], sel=address[12..13], a=a7, b=b7, c=c7, d=d7);
+    DMux4Way(in=in[8], sel=address[12..13], a=a8, b=b8, c=c8, d=d8);
+    DMux4Way(in=in[9], sel=address[12..13], a=a9, b=b9, c=c9, d=d9);
+    DMux4Way(in=in[10], sel=address[12..13], a=a10, b=b10, c=c10, d=d10);
+    DMux4Way(in=in[11], sel=address[12..13], a=a11, b=b11, c=c11, d=d11);
+    DMux4Way(in=in[12], sel=address[12..13], a=a12, b=b12, c=c12, d=d12);
+    DMux4Way(in=in[13], sel=address[12..13], a=a13, b=b13, c=c13, d=d13);
+    DMux4Way(in=in[14], sel=address[12..13], a=a14, b=b14, c=c14, d=d14);
+    DMux4Way(in=in[15], sel=address[12..13], a=a15, b=b15, c=c15, d=d15);
+
+    DMux4Way(in=true, sel=address[12..13], a=a0load, b=b0load,
+        c=c0load, d=d0load);
+
+    And(a=load, b=a0load, out=a1load);
+    And(a=load, b=b0load, out=b1load);
+    And(a=load, b=c0load, out=c1load);
+    And(a=load, b=d0load, out=d1load);
+
+    RAM4K(in[0]=a0, in[1]=a1, in[2]=a2, in[3]=a3, in[4]=a4,
+        in[5]=a5, in[6]=a6, in[7]=a7, in[8]=a8, in[9]=a9,
+        in[10]=a10, in[11]=a11, in[12]=a12, in[13]=a13, in[14]=a14,
+        in[15]=a15, load=a1load, address=address[0..11], out=a);
+    RAM4K(in[0]=b0, in[1]=b1, in[2]=b2, in[3]=b3, in[4]=b4,
+        in[5]=b5, in[6]=b6, in[7]=b7, in[8]=b8, in[9]=b9,
+        in[10]=b10, in[11]=b11, in[12]=b12, in[13]=b13, in[14]=b14,
+        in[15]=b15, load=b1load, address=address[0..11], out=b);
+    RAM4K(in[0]=c0, in[1]=c1, in[2]=c2, in[3]=c3, in[4]=c4,
+        in[5]=c5, in[6]=c6, in[7]=c7, in[8]=c8, in[9]=c9,
+        in[10]=c10, in[11]=c11, in[12]=c12, in[13]=c13, in[14]=c14,
+        in[15]=c15, load=c1load, address=address[0..11], out=c);
+    RAM4K(in[0]=d0, in[1]=d1, in[2]=d2, in[3]=d3, in[4]=d4,
+        in[5]=d5, in[6]=d6, in[7]=d7, in[8]=d8, in[9]=d9,
+        in[10]=d10, in[11]=d11, in[12]=d12, in[13]=d13, in[14]=d14,
+        in[15]=d15, load=d1load, address=address[0..11], out=d);
+
+    Mux4Way16(a=a, b=b, c=c, d=d, sel=address[12..13],
+        out=out);
 }
